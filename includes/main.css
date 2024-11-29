@@ -1,0 +1,499 @@
+/*FONT GOOGLE*/
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+/*ICONE GOOGLE*/
+
+.material-icons {
+    padding: 0;
+    margin: 0;
+    font-size: 15px;
+}
+
+/*Body and Head*/
+
+body {
+    background-color: lightgrey;
+    font-family: Rubik;
+    padding: 0;
+    margin: 0;
+}
+
+/*Heading*/
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+/*Pulsanti*/
+
+button {
+    font-family: Rubik;
+    background-color: rgb(120, 240, 83);
+    padding: 10px 20px;
+    border: 2px solid grey;
+    border-radius: 15px;
+}
+
+button:hover {
+    background-color: rgb(238, 186, 88);
+    cursor: pointer;
+    box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
+}
+
+/*Tabelle*/
+
+table {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table, th, td {
+    border: 2px solid grey;
+    border-collapse: collapse;
+}
+
+th, td {
+    width: fit-content;
+    text-align: center;
+    padding: 10px;
+}
+
+th {
+    padding: 15px;
+    background-color: rgb(253, 183, 54);
+}
+
+tr {
+    background: rgb(138, 207, 138);
+}
+
+tr:hover {
+    background-color: rgb(241, 240, 127);
+}
+
+/*Forms*/
+
+div.divForm {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.divInput {
+    padding-bottom: 10px;
+}
+
+div.divInvioForm {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input, option, textarea {
+    width: 800px;
+    background-color: rgb(223, 222, 222);
+    border: 2px solid grey;
+    border-radius: 15px;
+    padding: 15px;
+    font-family: Rubik;
+}
+
+select { /*SELECT E' SEPARATO DAGLI ALTRI PERCHE' GLI ALTRI VENGONO 34px PIU LARGHI*/
+    width: 834px; /*IMPOSTARE 34px PIU DEGLI ALTRI INPUT/OPTION/TEXTAREA/...*/
+    background-color: rgb(223, 222, 222);
+    border: 2px solid grey;
+    border-radius: 15px;
+    padding: 15px;
+    font-family: Rubik;
+}
+
+input.checkbox {
+    width: auto;
+    background-color: none;
+    border: none;
+    font-family: Rubik;
+}
+
+p.labelInput {
+    padding-bottom: 5px;
+}
+
+/*NavBar*/
+
+ul.navBar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li#vaiAreaAmministrazione {
+    background-color: rgb(175, 99, 99);
+}
+
+li.navBar {
+    display: inline-block;
+    padding: 15px 15px;
+}
+
+li.navBar:hover {
+    background-color: green;
+}
+
+a.navBar {
+    color: white;
+}
+
+div.navBar {
+    width: 100%;
+    background-color: rgb(73, 68, 68);
+}
+
+/*NavBar Amministrazione*/
+
+ul.navBarAmministrazione {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li#tornaAreaFAD {
+    background-color: rgb(175, 99, 99);
+}
+
+li.navBarAmministrazione {
+    display: inline-block;
+    padding: 15px 15px;
+}
+
+li.navBarAmministrazione:hover {
+    background-color: green;
+}
+
+a.navBarAmministrazione {
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+
+div.navBarAmministrazione {
+    width: 100%;
+    background-color: rgb(223, 81, 81);
+}
+
+/*Login (login.php)*/
+
+div.login {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input.login {
+    width: 300px;
+}
+
+/*HomePage (index.php)*/
+
+h3.homePageFAD {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 15px;
+}
+
+td.homePageFAD.nome {
+    text-align: left;
+    padding-left: 20px;
+}
+
+/*Dettagli FAD (dettagliFAD.php)*/
+
+div.mainDettagliFAD {
+    background-color: rgb(41, 101, 233);
+    cursor: pointer;
+    color: white;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    border: 2px solid grey;
+    border-radius: 15px 15px 0px 0px;
+    padding: 15px;
+}
+
+div.dettagliFAD {
+    background-color: rgb(172, 172, 160);
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid grey;
+    border-radius: 0px 0px 15px 15px;
+    padding: 15px;
+}
+
+/*Visualizza FAD (visualizzaFAD.php)*/
+
+div#navBar\+mostraFAD {
+    height: 100vh;
+    overflow: hidden;
+}
+
+embed.mostraFAD {
+    width: 100%;
+    height: 95vh;
+}
+
+video.mostraFAD {
+    width: 100%;
+    height: 95vh;
+}
+
+/*NavBar visualizzazione FAD (visualizzaFAD.php)*/
+
+div.navBarFAD {
+    width: 100%;
+    padding: 10px;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+}
+
+p.navBarFAD, button.navBarFAD {
+    display: inline-block;
+    color: white;
+}
+
+button.navBarFAD {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+button.navBarFAD:hover {
+    cursor: pointer;
+}
+
+button#salvataggioConteggio {
+    cursor: wait;
+}
+
+form.navBarFAD {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+/*Le tue FAD (leTueFAD.php)*/
+
+div.leTueFAD {
+    background-color: grey;
+    width: 90%;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+button.funzioniLeTueFAD {
+    background-color: rgb(120, 240, 83);
+    padding: 5px;
+    margin-left: 5px;
+    width: 40px;
+}
+
+.cartellaMateriaLeTueFAD {
+    color:blue;
+    padding: 0px 0px 5px 0px;
+    display: flex;
+    align-items: center;
+}
+
+p.cartellaPrincipaleLeTueFAD {
+    padding-top: 5px;
+    padding-left: 15px;
+}
+
+.cartellaPrincipaleLeTueFAD {
+    display: flex;
+    align-items: center;
+}
+
+p.fileCartellaPrincipaleLeTueFAD, p.subFolderLeTueFAD {
+    padding-top: 5px;
+    padding-left: 30px;
+}
+
+.fileCartellaPrincipaleLeTueFAD, .subFolderLeTueFAD {
+    display: flex;
+    align-items: center;
+}
+
+p.fileSubFolderLeTueFAD {
+    padding-top: 5px;
+    padding-left: 45px;
+}
+
+.fileSubFolderLeTueFAD {
+    display: flex;
+    align-items: center;
+}
+
+.cartellaMateriaLeTueFAD, .cartellaPrincipaleLeTueFAD, .subFolderLeTueFAD {
+    cursor: pointer;
+}
+
+/*Panoramica studenti (panoramicaStudenti.php)*/
+
+div.mainPanoramicaStudenti {
+    width: fit-content;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.panoramicaStudenti {
+    background-color: rgb(120, 240, 83);
+    border: 2px solid grey;
+    border-radius: 15px;
+    width: fit-content;
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+/*Panoramica docenti (panoramicaDocenti.php)*/
+
+div.mainPanoramicaDocenti {
+    background-color: rgb(41, 101, 233);
+    cursor: pointer;
+    color: white;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    border: 2px solid grey;
+    border-radius: 15px 15px 0px 0px;
+    padding: 15px;
+}
+
+div.panoramicaDocenti {
+    background-color: rgb(172, 172, 160);
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid grey;
+    border-radius: 0px 0px 15px 15px;
+    padding: 15px;
+}
+
+/*Amministrazione - Anno scolastico (amministrazione/annoScolastico.php)*/
+
+button.annoScolastico {
+    text-align: center;
+}
+
+div#divPulsanteInvioAnnoScolastico {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Amministrazione - Gestisci classi (amministrazione/gestisciClassi.php)*/
+
+div.mainGestisciClassi {
+    background-color: rgb(41, 101, 233);
+    cursor: pointer;
+    color: white;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    border: 2px solid grey;
+    border-radius: 15px 15px 0px 0px;
+    padding: 15px;
+}
+
+div.gestisciClassi {
+    background-color: rgb(172, 172, 160);
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid grey;
+    border-radius: 0px 0px 15px 15px;
+    padding: 15px;
+}
+
+button.assegnaDocente {
+    padding: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    width: 40px;
+}
+
+button.assegnaMonteOreAnnuale {
+    padding: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    width: 40px;
+}
+
+div.divPulsanteGestisciClassi {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 15px;
+}
+
+/*Amministrazione - Gestisci studenti (amministrazione/gestisciStudenti.php)*/
+
+div.mainGestisciStudenti {
+    background-color: rgb(41, 101, 233);
+    cursor: pointer;
+    color: white;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    border: 2px solid grey;
+    border-radius: 15px 15px 0px 0px;
+    padding: 15px;
+}
+
+div.gestisciStudenti {
+    background-color: rgb(172, 172, 160);
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid grey;
+    border-radius: 0px 0px 15px 15px;
+    padding: 15px;
+}
+
+div.divPulsanteGestisciStudenti {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button.rimuoviStudente {
+    padding: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    width: 40px;
+    background-color: rgb(255, 151, 151);
+}

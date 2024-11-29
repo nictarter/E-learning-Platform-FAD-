@@ -54,7 +54,7 @@
                                     //Per ogni cartella principale, mostrala nelle opzioni e mostra anche le sue eventuali sottocartelle:
                                     while ($cartellaPrincipale = $cartellePrincipali->fetch(PDO::FETCH_OBJ)) {
                                         //Mostra la cartella principale come opzione:
-                                        echo '<option value="' . [$cartellaPrincipale->ID, $materia->Classe, $materia->Materia] . '">' . $cartellaPrincipale->Nome . ' (' . $cartellaPrincipale->Materia . ' - ' . $cartellaPrincipale->Classe . ')</option>';
+                                        echo '<option value="' . $cartellaPrincipale->ID . '-' . $cartellaPrincipale->Classe . '-' . $cartellaPrincipale->Materia . '">' . $cartellaPrincipale->Nome . ' (' . $cartellaPrincipale->Materia . ' - ' . $cartellaPrincipale->Classe . ')</option>';
                                         
                                         //Cerca ora le eventuali sottocartelle di questa cartella:
                                         $query = "SELECT * FROM Cartelle WHERE Materia = '" . $materia->Materia . "' AND Classe = '" . $materia->Classe . "' AND ID_Cartella_Principale = '" . $cartellaPrincipale->ID . "';";
@@ -65,7 +65,7 @@
                                         //Mostra quindi le sottocartelle di questa cartella:
                                         while ($sottocartella = $sottocartelle->fetch(PDO::FETCH_OBJ)) {
                                             //Mostra la sottocartella come opzione:
-                                            echo '<option value="' . [$sottocartella->ID, $materia->Classe, $materia->Materia] . '">--' . $sottocartella->Nome . ' (' . $sottocartella->Materia . ' - ' . $sottocartella->Classe . ')</option>';
+                                            echo '<option value="' . $sottocartella->ID . '-' . $sottocartella->Classe . '-' . $sottocartella->Materia . '">--' . $sottocartella->Nome . ' (' . $sottocartella->Materia . ' - ' . $sottocartella->Classe . ')</option>';
                                         }
                                     }
                                 }

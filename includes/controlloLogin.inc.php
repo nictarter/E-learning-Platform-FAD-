@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * This file is part of Area FAD
+ * @author      Nicolò Tarter <nicolo.tarter@gmail.com>
+ * @copyright   (C) 2024 Nicolò Tarter
+ * @license     GPL-3.0+ <https://www.gnu.org/licenses/gpl-3.0.html>
+ */
+
 session_start();
 
 //Se sei arrivato qui come avresti dovuto:

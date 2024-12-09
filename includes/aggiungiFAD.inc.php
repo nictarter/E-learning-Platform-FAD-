@@ -13,7 +13,7 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     //Prendi tutti i dati relativi alla FAD da aggiungere e l'anno scolastico in corso:
     $nomeFAD = $_POST["nome"];
-    $cartellaClasseMateria = $_POST["cartellaClasseMateria"];
+    $cartellaClasseMateria = explode("-", $_POST["cartellaClasseMateria"]);
     $descrizione = $_POST["descrizione"];
     $minutiDaConteggiare = $_POST["daConteggiare"];
     $inizioVisibilita = $_POST["inizioVisibilita"];
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         include_once "connectDatabase.inc.php";
 
         //Prendi il monteore annuale previsto di questa materia:
-        $query = "SELECT * FROM Materie WHERE Materia = '" . $cartellaClasseMateria[2] . "' AND Classe = '" . $cartellaClasseMateria[1] . "' AND Anno_scolastico = '" . $annoScolastico . "';";
+        $query = "SELECT Monteore_minuti FROM Materie WHERE Materia = '" . $cartellaClasseMateria[2] . "' AND Classe = '" . $cartellaClasseMateria[1] . "' AND Anno_scolastico = '" . $annoScolastico . "';";
         $stmt = $db->prepare($query);
         $stmt->execute();
         $monteoreAnnuale = $stmt->fetch();
@@ -38,13 +38,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $monteoreAssegnato = $stmt->fetch();
 
         //Controlla quindi se è stato assegnato più di quanto previsto:
-        if (($monteoreAnnuale - (int)$monteoreAssegnato - $minutiDaConteggiare) >= 0) {
+        if (((int)$monteoreAnnuale[0] - (int)$monteoreAssegnato[0] - $minutiDaConteggiare) < 0) {
             //Se ha assegnato più di quanto previsto, torna indietro e avvisa il docente:
-            echo '<script>';
-            echo 'location.replace("../aggiungiFAD.php");';
-            echo 'alert("Attenzione!\nNon è stato possibile inserire la FAD per superamento monteore annuale previsto.");';
-            echo 'alert("Monteore annuale: ' . $monteoreAnnuale->Monteore_minuti . '\nMonteore assegnato: ' . (int)$monteoreAssegnato . '\nMinuti da conteggiare: ' . $minutiDaConteggiare . '")';
-            echo '</script>';
+            echo '<script>
+                location.replace("../aggiungiFAD.php");
+                alert("Attenzione!\nNon è stato possibile inserire la FAD per superamento monteore annuale previsto.\nNello specifico:\nMonteore annuale: ' . (int)$monteoreAnnuale[0] . '\nMonteore assegnato per questa FAD: ' . (int)$monteoreAssegnato[0] . '\nMonteore già assegnato: ' . $minutiDaConteggiare . '");
+            </script>';
             die();
         }
 

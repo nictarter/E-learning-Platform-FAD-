@@ -47,25 +47,44 @@
                     echo '<div class="gestisciStudenti" id="info' . $classe->Classe . '" style="display: none">';
                     echo '<p><strong>ELENCO STUDENTI:</strong></p>';
 
-                    //Inizia la lista degli studenti:
-                    echo '<ul class="gestisciStudenti">';
-
-                    //Prendi le materie associate a questa classe:
+                    //Prendi gli studenti associati a questa classe:
                     $query = "SELECT * FROM Studenti WHERE Classe = '" . $classe->Classe . "' AND Anno_scolastico = '" . $annoScolastico . "';";
                     $stmt = $db->prepare($query);
                     $stmt->execute();
                     $studenti = $stmt;
 
+                    //Crea gli array che conterranno tutti i dati degli studenti:
+                    $arrayIDStudenti = array();
+                    $arrayEmailStudenti = array();
+
                     //Mostra tutti gli studenti associati a questa classe come punti della lista disordinata (unordered list):
                     while ($studente = $studenti->fetch(PDO::FETCH_OBJ)) {
-                        echo '<li class="gestisciStudenti">' . $studente->Email . '<button onclick=\'rimuoviStudente("' . $studente->ID . '")\' class="rimuoviStudente"><span class="material-icons">delete</span></button></li>';
-                        //Form nascosto che permette il funzionamento della rimozione dello studente tramite il pulsante affianco a ogni studente:
-                        echo '<form id="rimuovi' . $studente->ID . '" action="includes/rimuoviStudente.inc.php" method="post">';
-                        echo '<input type="hidden" name="IDStudente" value="' . $studente->ID . '">';
-                        echo '</form>';
+                        array_push($arrayIDStudenti, $studente->ID);
+                        array_push($arrayEmailStudenti, $studente->Email);
                     }
 
-                    //Termina la lista, metti il pulsante per aggiungere studenti (con il relativo form - nascosto) e chiudi il div della gestione degli studenti:
+                    //Controlla se esistono studenti associati alla classe:
+                    if (count($arrayIDStudenti) > 0) {
+                        //Se degli studenti sono associati alla classe, inizia la lista degli studenti:
+                        echo '<ul class="gestisciStudenti">';
+
+                        //Inserisci nella lista tutti gli studenti:
+                        for ($i = 0; $i < count($arrayIDStudenti); $i++) {
+                            echo '<li class="gestisciStudenti">' . $arrayEmailStudenti[$i] . '<button onclick=\'rimuoviStudente("' . $arrayIDStudenti[$i] . '")\' class="rimuoviStudente"><span class="material-icons">delete</span></button></li>';
+                            //Form nascosto che permette il funzionamento della rimozione dello studente tramite il pulsante affianco a ogni studente:
+                            echo '<form id="rimuovi' . $arrayIDStudenti[$i] . '" action="includes/rimuoviStudente.inc.php" method="post">';
+                            echo '<input type="hidden" name="IDStudente" value="' . $arrayIDStudenti[$i] . '">';
+                            echo '</form>';
+                        }
+
+                        //Termina la lista degli studenti:
+                        echo '</ul>';
+                    } else {
+                        //Se nessuno studente è associato alla classe, dillo:
+                        echo '<p class="gestisciStudenti">Nessuno studente risulta associato alla classe.</p>';
+                    }
+
+                    //Metti il pulsante per aggiungere studenti (con il relativo form - nascosto) e chiudi il div della gestione degli studenti:
                     echo '<div class="divPulsanteGestisciStudenti">';
                     echo '<form action="includes/aggiungiStudenti.inc.php" id="form' . $classe->Classe . '" method="post">';
                     echo '<input type="hidden" id="email' . $classe->Classe . '" name="email" value="" required>';
@@ -73,7 +92,6 @@
                     echo '<button class="gestisciStudenti" type="button" onclick=\'aggiungiStudenti("' . $classe->Classe . '")\'><strong>AGGIUNGI STUDENTI</strong></button>';
                     echo '</form>';
                     echo '</div>';
-                    echo '</ul>';
                     echo '</div>';
                 }
             } catch(PDOException $errore) {

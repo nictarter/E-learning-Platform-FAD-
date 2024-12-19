@@ -18,16 +18,24 @@ function aperturaFAD(IDFAD, tipoVisualizzazione) {
 //Visualizza FAD (visualizzaFAD.php)
 //************
 
-function iniziaConteggioFAD() {
-    //Metti a schermo intero:
-    let fad = document.body;
-    fad.requestFullscreen();
+function iniziaConteggioFAD(finestraEsclusiva) {
     //Salva l'ora di inizio:
     var orarioInizio = Date.now();
     //Imposta la NavBar di colore verde e mostra il pulsante per stoppare il conteggio delle ore
     document.getElementById("divNavBarFAD").style = "background-color: green";
     document.getElementById("iniziaConteggio").style = "display:none";
     document.getElementById("terminaConteggio").style = "display:inline-block";
+    if (finestraEsclusiva === "1") {
+        //Metti a schermo intero:
+        let fad = document.body;
+        fad.requestFullscreen();
+    } else {
+        //Prepara il pulsante per fermare il timer in modo che possa gestire la rendicontazione della FAD quando essa è impostata in modalità non esclusiva:
+        function salvaConteggioFinestraNonEsclusiva() {
+            terminaConteggioFAD(orarioInizio);
+        }
+        document.getElementById("terminaConteggio").onclick = salvaConteggioFinestraNonEsclusiva;
+    }
     //Mostra lo scorrimento del tempo (timer)
     setInterval(function() {
         var tempoTrascorso = Date.now() - orarioInizio;
@@ -35,18 +43,20 @@ function iniziaConteggioFAD() {
         var secondi = secondiTrascorsi % 60;
         var minuti = (secondiTrascorsi - secondi) / 60;
         document.getElementById("ore").innerText = String(minuti) + ":" + String(secondi);
-        //Se esci dallo schermo intero, termina il conteggio delle ore:
-        if (!document.fullscreenElement) {
-            terminaConteggioFAD(orarioInizio);
-        }
-        //Se esci dalla finestra, termina il conteggio delle ore:
-        window.onblur = function () {
-            terminaConteggioFAD(orarioInizio);
+        if (finestraEsclusiva === "1") {
+            //Se esci dallo schermo intero, termina il conteggio delle ore:
+            if (!document.fullscreenElement) {
+                terminaConteggioFAD(orarioInizio);
+            }
+            //Se esci dalla finestra, termina il conteggio delle ore:
+            window.onblur = function () {
+                terminaConteggioFAD(orarioInizio);
+            }
         }
     }, 100)
 }
 
-function rimuoviSchermoIntero() {
+function chiudiSchermoIntero() {
     document.exitFullscreen();
 }
 
@@ -55,7 +65,7 @@ function terminaConteggioFAD(orarioInizio) {
     var orarioFine = Date.now();
     //Ferma lo scorrimento che viene mostrato a schermo:
     document.getElementById("ore").id = "";
-    //Imposta la NavBar di colore arancione e mostra la scritta di salvataggio del conteggio
+    //Imposta la NavBar di colore arancione e mostra la scritta di salvataggio del conteggio:
     document.getElementById("divNavBarFAD").style = "background-color: orange";
     document.getElementById("terminaConteggio").style = "display:none";
     document.getElementById("salvataggioConteggio").style = "display:inline-block";

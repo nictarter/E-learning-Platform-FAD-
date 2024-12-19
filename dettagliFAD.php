@@ -55,6 +55,7 @@
                     echo '<p><strong>DESCRIZIONE: </strong>' . $FAD->Descrizione . '</p>';
                     echo '<p><strong>MINUTI DA EFFETTUARE: </strong>' . $FAD->Minuti . '</p>';
                     echo '<p><strong>TERMINE CONTEGGIO ORE: </strong>' . $FAD->Fine_conteggio . '</p>';
+                    echo '<p><strong>FINESTRA ESCLUSIVA: </strong>' . $FAD->Finestra_esclusiva . '</p>';
                     echo '<button onclick="aperturaFAD(\'' . $FAD->ID . '\', \'pc\')">ACCEDI ORA</button>';
                     echo '<button onclick="aperturaFAD(\'' . $FAD->ID . '\', \'mobile\')">Dispositivo mobile</button>';
                     echo '</div>';
@@ -62,6 +63,7 @@
                     //Crea il form nascosto per permettere l'apertura della FAD:
                     echo '<form action="visualizzaFAD.php" id="formVisualizzazioneFAD' . $FAD->ID . '" method="post">';
                     echo '<input type="hidden" name="tipoVisualizzazione" id="tipoVisualizzazione' . $FAD->ID . '" value="" required>';
+                    echo '<input type="hidden" name="finestraEsclusiva" value=' . $FAD->Finestra_esclusiva . ' required>';
                     echo '<input type="hidden" name="IDFAD" value="' . $FAD->ID . '" required>';
                     echo '<input type="hidden" name="materia" value="' . $FAD->Materia . '" required>';
                     echo '<input type="hidden" name="classe" value="' . $FAD->Classe . '" required>';

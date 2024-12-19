@@ -34,7 +34,7 @@
                 </div>
                 <div class="divInput">
                     <p class="labelInput"><strong>Cartella/sottocartella:</strong></p>
-                    <select name="cartellaClasseMateria">
+                    <select name="cartellaClasseMateria" required>
                         <?php
                             //Prendi l'email del docente e l'anno scolastico in corso:
                             $email = $_SESSION["email"];
@@ -91,6 +91,13 @@
                 <div class="divInput">
                     <p class="labelInput"><strong>Minuti da conteggiare:</strong></p>
                     <input type="number" name="daConteggiare" min="1" placeholder="Minuti da conteggiare" required>
+                </div>
+                <div class="divInput">
+                    <p class="labelInput"><strong>Finestra esclusiva:</strong></p>
+                    <select name="finestraEsclusiva" required>
+                        <option value="1">Abilitata</option>
+                        <option value="0">Disabilitata</option>
+                    </select>
                 </div>
                 <div class="divInput">
                     <p class="labelInput"><strong>Inizio visibilità:</strong></p>

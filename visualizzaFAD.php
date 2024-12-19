@@ -28,7 +28,9 @@
                 <button class="navBarFAD" style="display:inline-block" id="home"><a href="index.php"><strong>HOME</strong></a></button>
                 <p class="navBarFAD">Tempo accreditato: </p>
                     <p class="navBarFAD"><strong id="ore">00:00</strong></p>
-                    <button class="navBarFAD" style="display:inline-block" id="iniziaConteggio" onclick="iniziaConteggioFAD()"><strong>INIZIA IL CONTEGGIO</strong></button>
+                    <?php
+                        echo '<button class="navBarFAD" style="display:inline-block" id="iniziaConteggio" onclick="iniziaConteggioFAD(\'' . $_POST["finestraEsclusiva"] . '\')"><strong>INIZIA IL CONTEGGIO</strong></button>';
+                    ?>
                     <button class="navBarFAD" style="display:none" id="salvataggioConteggio"><strong>SALVATAGGIO IN CORSO...</strong></button>
                     <form class="navBarFAD" id="formConteggioDatabase" action="includes/salvataggioConteggio.inc.php" method="post">
                         <input type="hidden" value="0" id="conteggioDatabase" name="tempoDaConteggiare">
@@ -38,8 +40,8 @@
                             echo '<input type="hidden" name="materia" value="' . $_POST["materia"] . '" required>';
                             echo '<input type="hidden" name="classe" value="' . $_POST["classe"] . '" required>';
                             echo '<input type="hidden" name="estensioneFile" value="' . $_POST["estensioneFile"] . '" required>';
+                            echo '<button class="navBarFAD" style="display:none" id="terminaConteggio" onclick="chiudiSchermoIntero()"><strong id="pulsanteConteggio">TERMINA IL CONTEGGIO</strong></button>';
                         ?>
-                        <button class="navBarFAD" style="display:none" id="terminaConteggio" onclick="rimuoviSchermoIntero()"><strong id="pulsanteConteggio">TERMINA IL CONTEGGIO</strong></button>
                     </form>
             </div>
             <div class="mostraFAD">

@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $cartellaClasseMateria = explode("-", $_POST["cartellaClasseMateria"]);
     $descrizione = $_POST["descrizione"];
     $minutiDaConteggiare = $_POST["daConteggiare"];
+    $finestraEsclusiva = $_POST["finestraEsclusiva"];
     $inizioVisibilita = $_POST["inizioVisibilita"];
     $termineConteggio = $_POST["termineConteggio"];
     $annoScolastico = implode($_SESSION["annoScolastico"]);
@@ -52,9 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $estensioneFile = $infoFile->getExtension();
 
         //Inserisci la FAD nel database:
-        $query = "INSERT INTO FAD (Nome, Descrizione, Minuti, Materia, Classe, Anno_scolastico, Inizio_visibilita, Fine_conteggio, IDCartella, Estensione_file) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        $query = "INSERT INTO FAD (Nome, Descrizione, Minuti, Materia, Classe, Anno_scolastico, Inizio_visibilita, Fine_conteggio, Finestra_esclusiva, IDCartella, Estensione_file) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         $stmt = $db->prepare($query);
-        $stmt->execute([$nomeFAD, $descrizione, $minutiDaConteggiare, $cartellaClasseMateria[2], $cartellaClasseMateria[1], $annoScolastico, $inizioVisibilita, $termineConteggio, $cartellaClasseMateria[0], $estensioneFile]);
+        $stmt->execute([$nomeFAD, $descrizione, $minutiDaConteggiare, $cartellaClasseMateria[2], $cartellaClasseMateria[1], $annoScolastico, $inizioVisibilita, $termineConteggio, $finestraEsclusiva, $cartellaClasseMateria[0], $estensioneFile]);
 
         //Trova l'ID dell'ultima FAD caricata nel database(che dovrebbe corrispondere a quella appena inserita):
         $IDFAD = $db->lastInsertId();

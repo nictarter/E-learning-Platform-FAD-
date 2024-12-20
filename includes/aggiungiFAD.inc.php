@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $estensioneFile = $infoFile->getExtension();
 
         //Inserisci la FAD nel database:
-        $query = "INSERT INTO FAD (Nome, Descrizione, Minuti, Materia, Classe, Anno_scolastico, Inizio_visibilita, Fine_conteggio, Finestra_esclusiva, IDCartella, Estensione_file) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        $query = "INSERT INTO FAD (Nome, Descrizione, Minuti, Materia, Classe, Anno_scolastico, Inizio_visibilita, Fine_conteggio, Finestra_esclusiva, IDCartella, Estensione_file) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         $stmt = $db->prepare($query);
         $stmt->execute([$nomeFAD, $descrizione, $minutiDaConteggiare, $cartellaClasseMateria[2], $cartellaClasseMateria[1], $annoScolastico, $inizioVisibilita, $termineConteggio, $finestraEsclusiva, $cartellaClasseMateria[0], $estensioneFile]);
 

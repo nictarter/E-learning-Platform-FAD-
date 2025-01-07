@@ -29,14 +29,18 @@
                 </div>
                 <div class="divInput">
                     <p class="labelInput"><strong>Classe:</strong></p>
-                    <select name="classe">
+                    <select name="classe" required>
                         <option value="1LOS4">1LOS4</option>
                         <option value="2LOS4">2LOS4</option>
                         <option value="3LOS4">3LOS4</option>
                         <option value="4LOS4">4LOS4</option>
                     </select>
                 </div>
-                <div>
+                <div class="divInput">
+                    <p class="labelInput"><strong>Numero di studenti:</strong></p>
+                    <input type="number" name="numeroStudenti" min="1" placeholder="Numero degli studenti" required>
+                </div>
+                <div class="divInput">
                     <p class="labelInput"><strong>Materia:</strong></p>
 
                     <!-- Mostra tutte materie che possono essere associate alla classe (checkbox):-->

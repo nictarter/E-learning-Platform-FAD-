@@ -19,9 +19,6 @@
     </head>
     <body>
         <h1>Gestione Classi</h1>
-        <div class="divPulsanteGestisciClassi">
-                <button class="gestisciClassi" onclick="aggiungiClasse()"><strong>AGGIUNGI CLASSE</strong></button>
-        </div>
 
         <!-- Mostra tutte le classi attualmente associate al corrente anno scolastico:-->
         <?php
@@ -38,6 +35,34 @@
                 $stmt = $db->prepare($query);
                 $stmt->execute();
                 $classi = $stmt;
+
+                //Pulsante per aggiungere classi:
+                echo '<div class="divPulsanteGestisciClassi">';
+                echo '<button class="gestisciClassi" onclick="aggiungiClasse()"><strong>AGGIUNGI CLASSE</strong></button>';
+                echo '</div>';
+
+                //Controlla se a tutte le materie dell'anno scolastico in corso sono stati assegnati docente e monteore annuale:
+                $query = "SELECT * FROM Materie WHERE Anno_scolastico = '" . $annoScolastico . "' AND Email_docente IS NULL OR Monteore_minuti IS NULL;";
+                $stmt = $db->prepare($query);
+                $stmt->execute();
+                $assegnazioni = $stmt;
+
+                //Permetti il caricamento dei dati di assegnazione docenti e monteore annuale alle materie tramite file excel se non sono ancora stati assegnati:
+                if (!$assegnazioni->fetch(PDO::FETCH_OBJ)) {
+                    echo '<div class="divPulsanteGestisciClassi">';
+                    echo '<form action="includes/scaricaExcelDatiClassi.inc.php" method="post">';
+                    echo '<button class="gestisciClassi" ><strong>SCARICA FILE EXCEL</strong></button>';
+                    echo '</form>';
+                    echo '</div>';
+
+                    echo '<div class="divPulsanteGestisciClassi">';
+                    echo '<form id="formCaricaCSVDatiClassi" action="includes/caricaCSVDatiClassi.inc.php" method="post" enctype="multipart/form-data">';
+                    echo '<input type="file" name="datiClassiCSV" id="datiClassiCSV" style="display: none;" accept=".csv" required>';
+                    echo '<button type="submit" class="gestisciClassi" style="margin-right: 5px;"><strong>CARICA FILE CSV</strong></button>';
+                    echo '<button type="button" class="gestisciClassi" onclick="caricaCSVDatiClassi()"><span class="material-icons">upload_file</span></button>';
+                    echo '</form>';
+                    echo '</div>';
+                }
 
                 //Mostra ogni classe nel div con i rispettivi dati e pulsanti:
                 while ($classe = $classi->fetch(PDO::FETCH_OBJ)) {

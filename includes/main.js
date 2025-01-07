@@ -172,6 +172,10 @@ function aggiungiClasse() {
     location.replace("aggiungiClasse.php");
 }
 
+function caricaCSVDatiClassi() {
+    document.getElementById("datiClassiCSV").click();
+}
+
 //************
 //Amministrazione - Gestisci studenti (Amministrazione/gestisciStudenti.php)
 //************
@@ -193,6 +197,24 @@ function rimuoviStudente(IDStudente) {
     } else {
         alert("L'operazione è stata interrotta.");
     }
+}
+
+function modificaNumeroStudentiPrevisti(classe, numeroStudentiEffettivi) {
+    var numeroStudentiPrevistiDesiderato = prompt("Inserisci il numero di studenti previsti desiderato per questa classe.\nAttenzione!\nSi prega di inserire un numero intero.");
+    if (Number(numeroStudentiPrevistiDesiderato) && numeroStudentiEffettivi <= numeroStudentiPrevistiDesiderato) {
+        document.getElementById("classeModificaNumeroStudentiPrevisti").value = classe;
+        document.getElementById("numeroStudentiPrevistiDesiderato").value = Number(numeroStudentiPrevistiDesiderato);
+        document.getElementById("modificaNumeroStudentiPrevisti").submit();
+    } else if (numeroStudentiEffettivi > numeroStudentiPrevistiDesiderato) {
+        alert("Non è possibile inserire un numero di studenti previsto per la classe minore di quelli già registrati!");
+    }
+    else {
+        alert("L'operazione è stata interrotta.");
+    }
+}
+
+function caricaCSVDatiStudenti() {
+    document.getElementById("datiStudentiCSV").click();
 }
 
 //************

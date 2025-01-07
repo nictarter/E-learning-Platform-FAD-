@@ -11,8 +11,9 @@ session_start();
 
 //Se sei arrivato qui come avresti dovuto:
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    //Prendi la classe da inserire e le materie ad essa collegate:
+    //Prendi la classe da inserire, il numero degli studenti che faranno parte della classe e le materie ad essa collegate:
     $classe = $_POST["classe"];
+    $numeroStudenti = $_POST["numeroStudenti"];
     $annoScolastico = implode($_SESSION["annoScolastico"]);
 
     //Prova ad inserire la classe nel database e, successivamente, ad aggiungere anche tutte le materie ad essa associate:
@@ -21,9 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         include_once "../../includes/connectDatabase.inc.php";
 
         //Inserisci la classe nel database:
-        $query = "INSERT INTO Classi (Classe, Anno_scolastico) VALUES (?, ?);";
+        $query = "INSERT INTO Classi (Classe, Anno_scolastico, Numero_studenti) VALUES (?, ?, ?);";
         $stmt = $db->prepare($query);
-        $stmt->execute([$classe, $annoScolastico]);
+        $stmt->execute([$classe, $annoScolastico, $numeroStudenti]);
 
         //Crea la cartella della classe in cui verranno inseriti tutti i file FAD dell'anno scolastico in corso:
         mkdir("../../FAD/" . $annoScolastico . "/" . $classe);
